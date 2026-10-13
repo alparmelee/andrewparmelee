@@ -1,0 +1,180 @@
+/**
+ * Shared site navigation — link from every HTML page:
+ * <link rel="stylesheet" href="nav.css">
+ */
+:root {
+  --nav-bg: #1f3e59;
+  --nav-bar-height: 64px;
+  --nav-pad-x: 24px;
+  --nav-inner-max: 1280px;
+  --nav-brand-size: 19px;
+  --nav-link-size: 14px;
+  --nav-link-pad-y: 7px;
+  --nav-link-pad-x: 14px;
+  --nav-brand-pad-y: 7px;
+  --nav-brand-pad-x: 3px;
+  --nav-link-gap: 8px;
+}
+
+.navbar,
+.top-nav {
+  background-color: var(--nav-bg);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-bar-height);
+  min-height: var(--nav-bar-height);
+  z-index: 1000;
+  padding: 0 var(--nav-pad-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  backdrop-filter: none;
+  /* Isolate nav from page-level typography (Tailwind preflight, body line-height, etc.). */
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: var(--nav-inner-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+}
+
+/* Pages without Tailwind still use class="flex items-center" — those utilities do nothing,
+   so the brand column must be defined here to match Tailwind-driven pages (index, about, …). */
+.navbar-inner > div:first-child {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Case-study pages: fixed nav is out of flow; push hero so it starts below the bar like other layouts. */
+body > nav.navbar + .project-hero {
+  margin-top: var(--nav-bar-height);
+}
+
+.navbar-center-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--nav-link-gap);
+  height: 100%;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: var(--nav-link-gap);
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.navbar-brand,
+.logo {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: var(--nav-brand-pad-y) var(--nav-brand-pad-x);
+  font-size: var(--nav-brand-size);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.navbar-brand:hover,
+.logo:hover {
+  color: #ffffff;
+}
+
+.navbar-link {
+  color: #d2e1ec;
+  font-weight: 500;
+  padding: var(--nav-link-pad-y) var(--nav-link-pad-x);
+  border-radius: 0.3rem;
+  font-size: var(--nav-link-size);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-links a {
+  color: #d2e1ec;
+  text-decoration: none;
+  font-size: var(--nav-link-size);
+  font-weight: 500;
+  line-height: 1;
+  padding: var(--nav-link-pad-y) var(--nav-link-pad-x);
+  border-radius: 0.3rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-link:hover,
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.navbar-link.active,
+.nav-links a.active {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: var(--nav-link-size);
+}
+
+.navbar-link.active:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 900px) {
+  .navbar,
+  .top-nav {
+    /* Mobile: keep nav fully in-flow so it never overlays hero/header content. */
+    position: relative;
+    top: auto;
+    left: auto;
+    height: auto;
+    min-height: var(--nav-bar-height);
+    padding: 10px var(--nav-pad-x);
+  }
+
+  /* On mobile the nav is in-flow, so the hero should not be pushed down by a fixed-height offset. */
+  body > nav.navbar + .project-hero {
+    margin-top: 0;
+  }
+
+  .navbar-inner {
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    height: auto;
+  }
+
+  .navbar-center-links,
+  .nav-links {
+    position: static;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
+  }
+}

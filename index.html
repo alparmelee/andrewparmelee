@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Parmelee - About Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="nav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f5f7;
+            color: #2f3b4a;
+        }
+
+        .about-card {
+            background-color: #ffffff;
+            border: 1px solid #e5ebf1;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 3rem 2.5rem;
+        }
+
+        .full-width-section {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+        }
+
+        .section-inner {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-card + .about-card {
+            margin-top: 0;
+            border-top: none;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            border: 1.5px solid #3d85b5;
+            color: #2e5f84;
+            font-weight: 600;
+            padding: 0.62rem 1.15rem;
+            border-radius: 0.45rem;
+            box-shadow: none;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+        }
+        .btn-primary:hover {
+            background-color: #3d85b5;
+            border-color: #3d85b5;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* Header animation (retained) */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        .site-footer {
+            width: 100%;
+            align-self: stretch;
+            background-color: #1f3e59;
+            color: #ffffff;
+            margin-top: 120px;
+        }
+        .footer-inner {
+            width: min(1280px, 96%);
+            margin: 0 auto;
+            padding: 26px 24px 20px;
+            text-align: center;
+        }
+        .footer-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.01em;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.95;
+            transition: opacity 0.2s ease;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        .footer-social {
+            margin-bottom: 4px;
+        }
+        .footer-linkedin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            transition: background-color 0.2s ease;
+        }
+        .footer-linkedin:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .footer-linkedin img {
+            width: 18px;
+            height: 18px;
+            display: block;
+            object-fit: contain;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(0, 0, 0, 0.08);
+            padding: 10px 24px;
+            text-align: center;
+        }
+        .footer-copy {
+            font-size: 0.78rem;
+            opacity: 0.78;
+        }
+
+        .skills-title {
+            color: #4f738f;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.86rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.7rem 2.3rem;
+        }
+        .skill-group {
+            width: 100%;
+            text-align: center;
+            color: #1f4f72;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin: 0 0 0.85rem;
+        }
+        .skill-group-block + .skill-group-block {
+            margin-top: 1.6rem;
+        }
+        .skill-pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.52rem;
+        }
+        .skill-pill {
+            background-color: #eff4f8;
+            color: #355971;
+            border: 1px solid #d7e4ee;
+            border-radius: 999px;
+            box-shadow: none;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            line-height: 1.1;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .skill-pill:hover {
+            background-color: #3e7ea9;
+            border-color: #3e7ea9;
+            color: #ffffff;
+        }
+        .cert-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2.75rem;
+        }
+        .cert-copy {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .cert-name {
+            color: #1f4f72;
+            font-size: 1.45rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 0;
+        }
+        .cert-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            color: #3e7ea9;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        .cert-link:hover {
+            color: #1f4f72;
+        }
+        .about-card img.cert-badge {
+            width: 124px !important;
+            height: auto !important;
+            max-width: none;
+            max-height: none;
+            border: none !important;
+            border-radius: 0 !important;
+            object-fit: contain;
+        }
+
+        header h1 {
+            color: #1f4f72 !important;
+            font-size: clamp(2.2rem, 4vw, 3.2rem) !important;
+            margin-bottom: 0.35rem !important;
+        }
+        header p {
+            color: #6b7b88 !important;
+            font-size: 1rem !important;
+            font-weight: 500 !important;
+        }
+
+        .about-card img {
+            border-radius: 9999px !important;
+            border: 2px solid #dce7ef !important;
+            width: 260px !important;
+            height: 260px !important;
+            max-width: 70vw;
+            max-height: 70vw;
+            object-fit: cover;
+        }
+
+        .about-card h2 {
+            color: #1f4f72;
+            font-size: 2.1rem !important;
+        }
+
+        .about-card p {
+            color: #4f5f6c;
+            line-height: 1.9;
+            font-size: 0.98rem;
+        }
+
+        main {
+            width: 100%;
+        }
+
+        .about-card:nth-of-type(1) {
+            background-color: #eef3f7;
+        }
+
+        .about-card:nth-of-type(2),
+        .about-card:nth-of-type(3),
+        .about-card:nth-of-type(4) {
+            background-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-card {
+                padding: 2rem 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center pt-10">
+
+    <nav class="navbar w-full">
+        <div class="navbar-inner">
+            <div class="flex items-center">
+                <a href="index.html" class="navbar-brand">Andrew Parmelee</a>
+            </div>
+            <div class="navbar-center-links">
+                <a href="index.html" class="navbar-link active">Home</a>
+                <a href="projects.html" class="navbar-link">Projects</a>
+                <a href="experience.html" class="navbar-link">Experience</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="text-center mb-12 w-full max-w-2xl animate-fade-in-down mt-20"> 
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
+            Andrew Parmelee
+        </h1>
+        <p class="text-xl sm:text-2xl text-indigo-700 font-bold drop-shadow-sm" style ="color:rgba(0, 0, 0, 1)">
+            Specializing in Technical support and troubleshooting. Interested and passionate about software, web, and game development.
+        </p>
+    </header>
+
+    <main class="w-full max-w-4xl">
+        
+        <div class="about-card full-width-section">
+            <div class="section-inner flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8">
+                <div class="lg:w-1/3 w-full flex justify-center mb-8 lg:mb-0">
+                    <img src="icon.png" alt="Andrew Parmelee Profile Picture" class="rounded-full w-48 h-48 object-cover shadow-lg border-4 border-white">
+                </div>
+                <div class="lg:w-2/3 w-full text-center lg:text-left">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Hello, I'm Andrew!</h2>
+                    <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                        I recently graduated in May 2026 from the <strong>University of Central Florida</strong> with a <strong>bachelor's degree in information technology</strong>. From my experiences, I have gained a knack for problem-solving and troubleshooting. In October 2026 I passed my CompTIA A+ certificate, demonstrating my skills in IT support, networking, cybersecurity, operating systems, etc.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                        During classes and free time, I have had quite a bit of experience on the development side and am considering pursuing a developer role in the future, as I really enjoy making things. I have made several websites, as well as games and other applications. You can view these <a href="projects.html" class="font-bold" style="color: #1f4f72;">here</a>.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="https://www.linkedin.com/in/andrew-parmelee-2292b7376/?isSelfProfile=true" target="_blank" class="btn-primary">
+                            Connect on LinkedIn
+                        </a>
+                        <a href="Lynn_Resume.pdf" target="_blank" class="btn-primary">
+                            View Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-card full-width-section mt-12">
+            <div class="section-inner">
+                <h3 class="text-3xl font-bold mb-8 text-center" style="color: #1f4f72;">Certifications</h3>
+                <div class="cert-row">
+                    <img class="cert-badge" src="A%2B%20Badge.png" alt="CompTIA A+ Certified badge">
+                    <div class="cert-copy">
+                        <p class="cert-name">CompTIA A+</p>
+                        <a class="cert-link" href="https://www.credly.com/badges/9636d916-2fa9-4a4f-919f-7438bebbd8ec/public_url" target="_blank" rel="noopener noreferrer">View credentials</a>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-bold mb-8 text-center" style="color: #1f4f72;">Skills</h3>
+                <div class="skill-group-block">
+                    <h4 class="skill-group">Technical Support</h4>
+                    <div class="skill-pill-list" style="justify-content: center;">
+                        <span class="skill-pill">Backup And Recovery</span>
+                        <span class="skill-pill">Cloud Computing</span>
+                        <span class="skill-pill">CompTIA A+</span>
+                        <span class="skill-pill">Cybersecurity</span>
+                        <span class="skill-pill">Help Desk</span>
+                        <span class="skill-pill">IT Support</span>
+                        <span class="skill-pill">Linux</span>
+                        <span class="skill-pill">Mac Support</span>
+                        <span class="skill-pill">Mobile Device Support</span>
+                        <span class="skill-pill">Networking</span>
+                        <span class="skill-pill">Operating Systems (OS)</span>
+                        <span class="skill-pill">System Configuration (SC)</span>
+                        <span class="skill-pill">Systems Administration</span>
+                        <span class="skill-pill">Technical Support</span>
+                        <span class="skill-pill">Troubleshooting</span>
+                        <span class="skill-pill">Virtualization</span>
+                    </div>
+                </div>
+                <div class="skill-group-block">
+                    <h4 class="skill-group">Development</h4>
+                    <div class="skill-pill-list" style="justify-content: center;">
+                        <span class="skill-pill">HTML</span>
+                        <span class="skill-pill">CSS</span>
+                        <span class="skill-pill">JS</span>
+                        <span class="skill-pill">Apache</span>
+                        <span class="skill-pill">MySQL</span>
+                        <span class="skill-pill">PHP</span>
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Supabase</span>
+                        <span class="skill-pill">MongoDB</span>
+                        <span class="skill-pill">Express</span>
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">Node.js</span>
+                        <span class="skill-pill">Unity</span>
+                        <span class="skill-pill">C#</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-card full-width-section mt-12 text-center">
+            <div class="section-inner">
+                <h3 class="text-3xl font-bold mb-4" style="color: #1f4f72;">Let's Connect!</h3>
+                <p class="text-xl text-gray-700 mb-6">
+                    You can reach me directly at: 
+                    <a href="mailto:andrew@parmelee.us" class="font-bold transition duration-150 ease-in-out" style="color: #1f4f72;">
+                        andrew@parmelee.us
+                    </a>
+                </p>
+                <a 
+                    href="mailto:andrew@parmelee.us?subject=Inquiry%20from%20Portfolio&body=Hello%20Andrew%2C%0A%0AI%20am%20reaching%20out%20to%20you%20regarding%20..." 
+                    class="btn-primary"
+                >
+                    Send Me an Email <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        </div>
+        </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-name">Andrew Parmelee</p>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="experience.html">Experience</a></li>
+            </ul>
+            <div class="footer-social">
+                <a class="footer-linkedin" href="https://www.linkedin.com/in/andrew-parmelee-2292b7376/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                    <img src="LinkedIn_logo_initials.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2026 Andrew Parmelee. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -54,6 +54,17 @@
             object-position: top center;
         }
 
+        .project-thumbnail.project-thumbnail-homelab {
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+            background-color: #e8f2f9;
+        }
+
+        .project-card:hover .project-thumbnail.project-thumbnail-homelab {
+            transform: none;
+        }
+
         .project-card:hover .project-thumbnail {
             transform: scale(1.03);
         }
@@ -132,21 +143,6 @@
             background-color: #3e7ea9;
         }
         
-        /* HEADER ANIMATION (unchanged) */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in-down {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-
         .site-footer {
             width: 100%;
             align-self: stretch;
@@ -274,8 +270,23 @@
             color: #1f4f72;
         }
 
+        .homelab-section {
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid #dfe8ef;
+        }
+
+        .section-lead {
+            color: #6b7b88;
+            font-size: 1rem;
+            font-weight: 500;
+            max-width: 42rem;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
         @media (max-width: 900px) {
-            .project-thumbnail {
+            .project-thumbnail:not(.project-thumbnail-homelab) {
                 height: 200px;
             }
         }
@@ -297,7 +308,7 @@
             </div>
         </nav>
 
-        <header class="text-center mb-12 w-full max-w-4xl animate-fade-in-down mt-20">
+        <header class="text-center mb-12 w-full max-w-4xl mt-20">
             <h2 class="text-2xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
                 My projects
             </h2>
@@ -403,6 +414,86 @@
                                     <span class="tech-pill">React</span>
                                     <span class="tech-pill">Node.js</span>
                                 </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="homelab-section" aria-label="Homelabs">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-3 portfolio-title">
+                    Homelabs
+                </h2>
+                <p class="text-center section-lead">
+                    Hands-on Windows Server and Linux labs I built at home—documented step by step with troubleshooting notes.
+                </p>
+                <div class="project-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <article class="project-card">
+                        <div class="card-content-wrapper">
+                            <img src="Homelab%201%20Thumbnail.png" alt="Active Directory Home Lab" class="project-thumbnail project-thumbnail-homelab">
+                            <div class="text-content">
+                                <h3 class="project-title">Active Directory Home Lab</h3>
+                                <h4 class="project-role">Home Lab 1</h4>
+                                <p class="project-description">A mini company network with a domain controller, DHCP, DNS, NAT, and a joined Windows 10 client—plus bulk user creation with PowerShell.</p>
+                                <div class="tech-list">
+                                    <span class="tech-pill">Active Directory</span>
+                                    <span class="tech-pill">Windows Server</span>
+                                    <span class="tech-pill">DHCP</span>
+                                    <span class="tech-pill">VirtualBox</span>
+                                </div>
+                                <a class="demo-link" href="https://alparmelee.github.io/Homelabs/HomeLab%201/homelab-writeup.html" target="_blank" rel="noopener noreferrer">Read Writeup</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-content-wrapper">
+                            <img src="Homelab%202%20Thumbnail.png" alt="File Server Permissions Lab" class="project-thumbnail project-thumbnail-homelab">
+                            <div class="text-content">
+                                <h3 class="project-title">File Server Permissions Lab</h3>
+                                <h4 class="project-role">Home Lab 2</h4>
+                                <p class="project-description">Department shares on the domain controller with NTFS permissions, security groups, and AGDLP—tested by signing in as HR, Finance, and IT users.</p>
+                                <div class="tech-list">
+                                    <span class="tech-pill">NTFS</span>
+                                    <span class="tech-pill">Active Directory</span>
+                                    <span class="tech-pill">File Sharing</span>
+                                </div>
+                                <a class="demo-link" href="https://alparmelee.github.io/Homelabs/Homelab%202/file-server-writeup.html" target="_blank" rel="noopener noreferrer">Read Writeup</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-content-wrapper">
+                            <img src="Homelab%203%20Thumbnail.png" alt="Group Policy Software Deployment Lab" class="project-thumbnail project-thumbnail-homelab">
+                            <div class="text-content">
+                                <h3 class="project-title">Group Policy Software Deployment</h3>
+                                <h4 class="project-role">Home Lab 3</h4>
+                                <p class="project-description">Deployed Google Chrome to domain workstations automatically with a GPO, a network share, and an MSI—no manual installs on the client.</p>
+                                <div class="tech-list">
+                                    <span class="tech-pill">Group Policy</span>
+                                    <span class="tech-pill">Windows Server</span>
+                                    <span class="tech-pill">Software Deployment</span>
+                                </div>
+                                <a class="demo-link" href="https://alparmelee.github.io/Homelabs/HomeLab%203/gpo-software-writeup.html" target="_blank" rel="noopener noreferrer">Read Writeup</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-content-wrapper">
+                            <img src="Homelab%204%20Thumbnail.png" alt="Helpdesk Ticketing Lab" class="project-thumbnail project-thumbnail-homelab">
+                            <div class="text-content">
+                                <h3 class="project-title">Helpdesk Ticketing Lab</h3>
+                                <h4 class="project-role">Home Lab 4</h4>
+                                <p class="project-description">GLPI on Ubuntu with LDAP tied to Active Directory—domain users submit tickets, technicians resolve them, and fixes land in the knowledge base.</p>
+                                <div class="tech-list">
+                                    <span class="tech-pill">GLPI</span>
+                                    <span class="tech-pill">Linux</span>
+                                    <span class="tech-pill">LDAP</span>
+                                    <span class="tech-pill">Apache</span>
+                                </div>
+                                <a class="demo-link" href="https://alparmelee.github.io/Homelabs/Homelab%204/ticketing-writeup.html" target="_blank" rel="noopener noreferrer">Read Writeup</a>
                             </div>
                         </div>
                     </article>
